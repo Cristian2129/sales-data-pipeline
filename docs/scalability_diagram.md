@@ -1,0 +1,1 @@
+![Flujo de procesamiento de datos](docs/Diagram_scalability.png.png)"
