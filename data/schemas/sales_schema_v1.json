@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "description": "Esquema de validación para datos de ventas",
+  "required_columns": [
+    "venta_id",
+    "fecha",
+    "producto_id",
+    "cantidad",
+    "precio_unitario",
+    "vendedor"
+  ],
+  "optional_columns": [
+    "cliente_id"
+  ],
+  "data_types": {
+    "venta_id": "integer",
+    "fecha": "string",
+    "producto_id": "string",
+    "cantidad": "integer",
+    "precio_unitario": "float",
+    "cliente_id": "string",
+    "vendedor": "string"
+  },
+  "constraints": {
+    "venta_id": {
+      "unique": true,
+      "min_value": 1
+    },
+    "fecha": {
+      "format": "YYYY-MM-DD",
+      "max_age_days": 2
+    },
+    "cantidad": {
+      "min_value": 1,
+      "max_value": 1000
+    },
+    "precio_unitario": {
+      "min_value": 0.01,
+      "max_value": 100000000.0
+    },
+    "producto_id": {
+      "pattern": "^P\\d{3}$",
+      "description": "Debe seguir formato P001, P002, etc."
+    }
+  },
+  "business_rules": {
+    "producto_must_exist_in_catalog": true,
+    "precio_max_discount_percent": 30,
+    "fecha_cannot_be_future": true
+  }
+}
