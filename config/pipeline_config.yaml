@@ -1,0 +1,99 @@
+version: "1.0"
+
+pipeline:
+  name: "sales-data-pipeline"
+  description: "Pipeline de procesamiento de datos de ventas"
+  author: "Cristian Vega"
+  created_date: "2024-10-30"
+
+# Configuración de validación
+validation:
+  schema_path: "data/schemas/sales_schema_v1.json"
+  required_files:
+    - "sales_data.csv"
+    - "product_catalog.csv"
+  validate_data_types: true
+  validate_business_rules: true
+  stop_on_validation_error: true
+
+# Configuración de procesamiento
+processing:
+  output_path: "data/processed/"
+  steps:
+    - "remove_duplicates"
+    - "handle_missing_values"
+    - "calculate_totals"
+    - "identify_discounts"
+  duplicate_columns:
+    - "venta_id"
+  missing_value_strategy:
+    cliente_id: "N/A"
+    vendedor: "drop_row"
+  calculations:
+    total_venta: "cantidad * precio_unitario"
+    porcentaje_descuento: "((precio_base - precio_unitario) / precio_base) * 100"
+
+# Configuración de enriquecimiento
+enrichment:
+  catalog_path: "data/reference/product_catalog.csv"
+  join_key: "producto_id"
+  columns_to_add:
+    - "nombre"
+    - "categoria"
+    - "marca"
+    - "precio_base"
+    - "stock"
+  handle_missing_products: "warn"
+  missing_products_threshold: 0.05
+
+# Configuración de validación de calidad
+quality:
+  checks:
+    completeness_threshold: 0.95
+    freshness_max_hours: 36
+    row_count_variation: 0.30
+    duplicate_threshold: 0.0
+    missing_products_threshold: 0.05
+  stop_on_quality_failure: false
+  quality_report_path: "data/outputs/quality_report.json"
+
+# Configuración de reportes
+reporting:
+  generate_summary: true
+  generate_quality_report: true
+  generate_execution_log: true
+  output_format: "json"
+  include_metrics:
+    - "records_processed"
+    - "records_failed"
+    - "execution_time"
+    - "data_quality_score"
+
+# Configuración de notificaciones
+notifications:
+  on_success: true
+  on_failure: true
+  on_warning: true
+  channels:
+    - "log_file"
+  email:
+    enabled: false
+    recipients: []
+  slack:
+    enabled: false
+    webhook_url: ""
+
+# Configuración de logging
+logging:
+  level: "INFO"
+  log_file: "logs/pipeline_execution.log"
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  max_log_size_mb: 10
+  backup_count: 5
+
+# Configuración de performance
+performance:
+  chunk_size: 10000
+  parallel_processing: false
+  max_workers: 4
+  timeout_minutes: 15

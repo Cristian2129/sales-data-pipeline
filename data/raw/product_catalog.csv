@@ -1,0 +1,21 @@
+producto_id,nombre,categoria,marca,precio_base,stock
+P001,Laptop Dell Inspiron 15,Computadoras,Dell,1500000.0,50
+P002,Laptop HP Pavilion 14,Computadoras,HP,1800000.0,35
+P003,MacBook Air M2,Computadoras,Apple,4500000.0,20
+P004,PC Gamer Asus ROG,Computadoras,Asus,6000000.0,15
+P005,Mouse Logitech MX Master 3,Accesorios,Logitech,350000.0,200
+P006,Teclado Mecánico Corsair K95,Accesorios,Corsair,650000.0,80
+P007,Webcam Logitech C920,Accesorios,Logitech,280000.0,120
+P008,Hub USB-C Anker,Accesorios,Anker,180000.0,150
+P009,"Monitor LG 27"" 4K",Pantallas,LG,1200000.0,45
+P010,"Monitor Samsung 24"" Curvo",Pantallas,Samsung,800000.0,60
+P011,Monitor Gaming Asus 144Hz,Pantallas,Asus,1500000.0,30
+P012,Auriculares Sony WH-1000XM5,Audio,Sony,1100000.0,70
+P013,Auriculares Gaming HyperX,Audio,HyperX,450000.0,90
+P014,Bocinas Logitech Z623,Audio,Logitech,550000.0,40
+P015,Micrófono Blue Yeti,Audio,Blue,680000.0,35
+P016,Consola PlayStation 5,Gaming,Sony,2500000.0,25
+P017,Xbox Series X,Gaming,Microsoft,2400000.0,30
+P018,Nintendo Switch OLED,Gaming,Nintendo,1600000.0,50
+P019,Control Xbox Wireless,Gaming,Microsoft,280000.0,100
+P020,Silla Gaming DXRacer,Gaming,DXRacer,1300000.0,20
