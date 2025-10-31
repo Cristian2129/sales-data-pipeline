@@ -33,11 +33,7 @@ jobs:
 
       - name: Dry-run pipeline
         run: |
-          python -c "
-from src.orchestrator import PipelineOrchestrator
-orchestrator = PipelineOrchestrator('config/pipeline_config.yaml')
-print('Orchestrator inicializado correctamente')
-"
+          python -c 'from src.orchestrator import PipelineOrchestrator; orchestrator = PipelineOrchestrator("config/pipeline_config.yaml"); print("Orchestrator inicializado correctamente")'
 
   integration-test:
     runs-on: ubuntu-latest
@@ -49,7 +45,7 @@ print('Orchestrator inicializado correctamente')
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - name: Run integration test
         run: |
